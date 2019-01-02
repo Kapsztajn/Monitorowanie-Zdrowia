@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Monitorowanie zdrowia</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_home">Fit</string>
+    <string name="title_dashboard">Info</string>
+    <string name="title_notifications">Ustawienia</string>
+</resources>
