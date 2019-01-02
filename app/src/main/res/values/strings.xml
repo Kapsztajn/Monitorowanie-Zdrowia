@@ -5,4 +5,5 @@
     <string name="title_home">Fit</string>
     <string name="title_dashboard">Info</string>
     <string name="title_notifications">Ustawienia</string>
+    <string name="title_activity_main3">Main3Activity</string>
 </resources>

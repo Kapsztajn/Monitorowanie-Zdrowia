@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener {
-            val intent = Intent(this, Main2Activity::class.java)
+            val intent = Intent(this, Main3Activity::class.java)
             startActivity(intent)
         }
     }

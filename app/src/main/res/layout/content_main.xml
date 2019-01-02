@@ -14,12 +14,16 @@
             android:inputType="textPersonName"
             android:text="Name"
             android:ems="10"
-            tools:layout_editor_absoluteY="141dp" tools:layout_editor_absoluteX="77dp" android:id="@+id/editText"/>
+            android:id="@+id/editText" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="141dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="77dp"/>
     <EditText
             android:layout_width="261dp"
             android:layout_height="74dp"
             android:inputType="textPersonName"
-            android:text="Name"
+            android:text="Password"
             android:ems="10"
-            tools:layout_editor_absoluteY="270dp" tools:layout_editor_absoluteX="75dp" android:id="@+id/editText2"/>
+            android:id="@+id/editText2" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="270dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="75dp"/>
 </android.support.constraint.ConstraintLayout>
