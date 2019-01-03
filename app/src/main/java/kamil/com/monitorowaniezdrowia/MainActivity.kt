@@ -7,9 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
 import android.view.KeyEvent;
+import android.view.View
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.user_register.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,6 +24,15 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, Main3Activity::class.java)
             startActivity(intent)
         }
+
+        register.setOnClickListener{
+            showRegistration()
+        }
+
+        button2.setOnClickListener {
+            showLogin()
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -40,5 +51,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun showRegistration(){
+        registrationlayout.visibility= View.VISIBLE
+        loginlayout.visibility=View.GONE
+    }
+
+    private fun showLogin(){
+        registrationlayout.visibility= View.GONE
+        loginlayout.visibility=View.VISIBLE
+
+    }
 
 }
