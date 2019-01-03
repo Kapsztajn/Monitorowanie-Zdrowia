@@ -13,7 +13,6 @@ class DatabaseHelper(context: Context):SQLiteOpenHelper(context,dbname,factory,v
     }
 
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     fun insertUserData(name: String, email: String, password: String){
