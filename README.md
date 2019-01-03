@@ -2,7 +2,7 @@
 
 Założenia:<br>
 a. Aplikacja mobilna na platformę Android<br>
-b. Aplikacja napisana w języku Java w Android Studio<br>
+b. Aplikacja napisana w języku Kotlin w Android Studio<br>
 c. Strona internetowa z dostępem do danych o naszym zdrowiu z bazy(JS i Node)<br>
 d. Baza danych online – by uzyskać dostęp na stronie www i zapisywać kopie(Mongo DB)<br>
 e. Możliwość korzystana z aplikacji tylko z dostępem do Internetu<br>
