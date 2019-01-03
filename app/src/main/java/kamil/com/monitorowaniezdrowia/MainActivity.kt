@@ -1,5 +1,6 @@
 package kamil.com.monitorowaniezdrowia
 
+import android.content.AsyncQueryHandler
 import android.os.Bundle
 import android.content.Intent
 import android.support.design.widget.Snackbar
@@ -8,6 +9,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.KeyEvent;
 import android.view.View
+import android.widget.Toast
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -15,14 +17,23 @@ import kotlinx.android.synthetic.main.user_register.*
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var handler: DatabaseHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
+        handler = DatabaseHelper(this)
+
         button.setOnClickListener {
-            val intent = Intent(this, Main3Activity::class.java)
-            startActivity(intent)
+            if (handler.userPresent(editText.text.toString(),editText2.text.toString()))
+            {val intent = Intent(this, Main3Activity::class.java)
+            startActivity(intent)}
+            else
+            {
+                Toast.makeText(this,"Użytkownik lub hasło nieprawidłowe", Toast.LENGTH_SHORT).show()
+            }
         }
 
         register.setOnClickListener{
@@ -31,6 +42,7 @@ class MainActivity : AppCompatActivity() {
 
         button2.setOnClickListener {
             showLogin()
+            handler.insertUserData(login.text.toString(),email.text.toString(),password.text.toString())
         }
 
     }
