@@ -27,9 +27,21 @@ class DatabaseHelper(context: Context):SQLiteOpenHelper(context,dbname,factory,v
 
     }
 
-    fun userPresent(name: String,password: String):Boolean{
+    fun userpasswordPresent(name: String, password: String):Boolean{
         val db=writableDatabase
         val query="select * from user where name = '$name' and password = '$password'"
+        val cursor=db.rawQuery(query,null)
+        if (cursor.count<=0){
+            cursor.close()
+            return false
+        }
+        cursor.close()
+        return true
+    }
+
+    fun userPresent(name: String):Boolean{
+        val db=writableDatabase
+        val query="select * from user where name = '$name'"
         val cursor=db.rawQuery(query,null)
         if (cursor.count<=0){
             cursor.close()
