@@ -4,10 +4,10 @@ import android.content.AsyncQueryHandler
 import android.os.Bundle
 import android.content.Intent
 import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.view.KeyEvent;
+import android.view.KeyEvent
 import android.view.View
 import android.widget.Toast
 
@@ -27,12 +27,14 @@ class MainActivity : AppCompatActivity() {
         handler = DatabaseHelper(this)
 
         button.setOnClickListener {
-            if (handler.userPresent(editText.text.toString(),editText2.text.toString()))
+            if (handler.userPresent(login_loginscreen.text.toString(),password_loginscreen.text.toString()))
             {val intent = Intent(this, Main3Activity::class.java)
             startActivity(intent)}
             else
             {
                 Toast.makeText(this,"Użytkownik lub hasło nieprawidłowe", Toast.LENGTH_SHORT).show()
+                login_loginscreen.text = null
+                password_loginscreen.text = null
             }
         }
 
@@ -43,6 +45,9 @@ class MainActivity : AppCompatActivity() {
         button2.setOnClickListener {
             showLogin()
             handler.insertUserData(login.text.toString(),email.text.toString(),password.text.toString())
+            login.text = null
+            email.text = null
+            password.text = null
         }
 
     }

@@ -6,4 +6,10 @@
     <string name="title_dashboard">Info</string>
     <string name="title_notifications">Ustawienia</string>
     <string name="title_activity_main3">Main3Activity</string>
+    <string name="haslo">Hasło</string>
+    <string name="login">Login</string>
+    <string name="email">E-mail</string>
+    <string name="zaloguj">Zaloguj</string>
+    <string name="zarejestrujsie">Zarejestruj się</string>
+    <string name="logo">Logo aplikacji</string>
 </resources>
