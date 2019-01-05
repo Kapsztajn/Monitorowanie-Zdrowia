@@ -1,5 +1,6 @@
 package kamil.com.monitorowaniezdrowia
 
+import android.content.Context
 import android.os.Bundle
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -12,6 +13,9 @@ import android.content.SharedPreferences
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.user_register.*
+import android.R.id.edit
+
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,8 +32,15 @@ class MainActivity : AppCompatActivity() {
 
         button.setOnClickListener {
             if (handler.userpasswordPresent(login_loginscreen.text.toString(),password_loginscreen.text.toString()))
-            {val intent = Intent(this, Main3Activity::class.java)
-            startActivity(intent)}
+            {
+                val pref = getSharedPreferences("loginData", Context.MODE_PRIVATE)
+                val editor = pref.edit()
+                editor.putString("login", login_loginscreen.text.toString())
+                editor.putString("password", password_loginscreen.text.toString())
+                editor.apply()
+                val intent = Intent(this, Main3Activity::class.java)
+                startActivity(intent)
+            }
             else
             {
                 Toast.makeText(this,"Użytkownik lub hasło nieprawidłowe", Toast.LENGTH_SHORT).show()
