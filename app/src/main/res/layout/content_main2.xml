@@ -21,7 +21,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:menu="@menu/navigation"/>
     <Button
-            android:text="Oblicz kalorie"
+            android:text="Oblicz kalorie2"
             android:background="@drawable/login_button"
 
             android:textColor="#ffffff"
