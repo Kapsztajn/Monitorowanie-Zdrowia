@@ -35,7 +35,7 @@ class StartScreen : AppCompatActivity() {
             }
             else
             {
-                val intent = Intent(this, Main3Activity::class.java)
+                val intent = Intent(this, Main2Activity::class.java)
                 startActivity(intent)
 
             }
