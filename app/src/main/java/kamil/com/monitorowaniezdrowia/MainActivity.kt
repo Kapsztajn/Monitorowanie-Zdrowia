@@ -9,12 +9,9 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import android.content.SharedPreferences
-
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.user_register.*
-import android.R.id.edit
-
 
 
 class MainActivity : AppCompatActivity() {
@@ -38,7 +35,7 @@ class MainActivity : AppCompatActivity() {
                 editor.putString("login", login_loginscreen.text.toString())
                 editor.putString("password", password_loginscreen.text.toString())
                 editor.apply()
-                val intent = Intent(this, Main3Activity::class.java)
+                val intent = Intent(this, Main2Activity::class.java)
                 startActivity(intent)
             }
             else
