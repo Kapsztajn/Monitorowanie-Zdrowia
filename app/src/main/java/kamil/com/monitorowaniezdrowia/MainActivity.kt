@@ -8,10 +8,10 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
-import android.content.SharedPreferences
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.user_main_login.*
+import kotlinx.android.synthetic.main.user_login.*
 import kotlinx.android.synthetic.main.user_register.*
+import android.view.animation.TranslateAnimation
 
 
 class MainActivity : AppCompatActivity() {
@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.user_main_login)
         setSupportActionBar(toolbar)
 
         handler = DatabaseHelper(this)
@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
                 editor.apply()
                 val intent = Intent(this, Main2Activity::class.java)
                 startActivity(intent)
+                finish()
             }
             else
             {
@@ -47,6 +48,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         register.setOnClickListener{
+            loginlayout.slideDown()
             showRegistration()
             secondViewOpened = true
         }
@@ -90,7 +92,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        // as you specify a parent activity in AndroidManifest.anim.
         return when (item.itemId) {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
@@ -98,14 +100,33 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showRegistration(){
-        registrationlayout.visibility= View.VISIBLE
-        loginlayout.visibility=View.GONE
+        loginlayout.slideDown()
+        loginlayout.setVisibility(View.GONE)
+        registrationlayout.slideUp()
+        registrationlayout.setVisibility(View.VISIBLE)
     }
 
     private fun showLogin(){
-        registrationlayout.visibility= View.GONE
-        loginlayout.visibility=View.VISIBLE
+        registrationlayout.slideDown()
+        registrationlayout.setVisibility(View.GONE)
+        loginlayout.slideUp()
+        loginlayout.setVisibility(View.VISIBLE)
+    }
 
+    fun View.slideUp(duration: Int = 300) {
+        visibility = View.VISIBLE
+        val animate = TranslateAnimation(0f, 0f, this.height.toFloat(), 0f)
+        animate.duration = duration.toLong()
+        animate.fillAfter = true
+        this.startAnimation(animate)
+    }
+
+    fun View.slideDown(duration: Int = 300) {
+        visibility = View.VISIBLE
+        val animate = TranslateAnimation(0f, 0f, 0f, this.height.toFloat())
+        animate.duration = duration.toLong()
+        animate.fillAfter = true
+        this.startAnimation(animate)
     }
 
 }

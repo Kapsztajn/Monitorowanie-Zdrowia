@@ -20,15 +20,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
-                app:popupTheme="@style/AppTheme.PopupOverlay"/>
+                app:popupTheme="@style/CustomPopupStyle"/>
 
     </android.support.design.widget.AppBarLayout>
-
-    <include layout="@layout/content_main"
-    android:id="@+id/loginlayout"/>
+    <include layout="@layout/user_login"
+             android:id="@+id/loginlayout"
+             android:layout_height="match_parent"
+             android:layout_width="match_parent"/>
     <include layout="@layout/user_register"
-             android:visibility="gone"
-             android:id="@+id/registrationlayout" android:layout_width="match_parent"
-             android:layout_height="match_parent"/>
+             android:visibility="invisible"
+             android:id="@+id/registrationlayout"
+    />
+
 
 </android.support.design.widget.CoordinatorLayout>
