@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Monitorowanie zdrowia</string>
+    <string name="action_settings">O aplikacji</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_home">Fit</string>
+    <string name="title_dashboard">Kuchnia</string>
+    <string name="title_notifications">Ustawienia</string>
+    <string name="title_activity_main3">Main3Activity</string>
+    <string name="haslo">Hasło</string>
+    <string name="login">Login</string>
+    <string name="email">E-mail</string>
+    <string name="zaloguj">Zaloguj</string>
+    <string name="zarejestrujsie">Zarejestruj się</string>
+    <string name="logo">Logo aplikacji</string>
+    <string name="obrazekranstartowy">Obraz ekran startowy</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

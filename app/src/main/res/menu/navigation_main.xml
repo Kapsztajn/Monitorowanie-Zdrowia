@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+            android:id="@+id/fit"
+            android:icon="@drawable/ic_fitness_center_black_24dp"
+            android:title="@string/title_home"/>
+
+    <item
+            android:id="@+id/kuchnia"
+            android:icon="@drawable/ic_kitchen_black_24dp"
+            android:title="@string/title_dashboard"/>
+
+    <item
+            android:id="@+id/ustawienia"
+            android:icon="@drawable/ic_settings_black_24dp"
+            android:title="@string/title_notifications"/>
+
+</menu>
