@@ -1,12 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".Fragment.fit">
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="chodzenie kamila"/>
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:layout_width="match_parent" android:layout_height="match_parent"
+             tools:context=".Fragment.fit"
+             android:background="@color/colorLogin" android:id="@+id/frameLayout">
+    <android.support.constraint.ConstraintLayout android:layout_width="match_parent"
+                                                 android:layout_height="match_parent">
+        <TextView
+                android:text="Dzisiaj"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView1"
+                android:textSize="50sp"
+                android:textColor="#ffffff" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
+                app:layout_constraintStart_toStartOf="parent"/>
 
+        <TextView
+                android:text="udało Ci się:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView2"
+                android:textSize="40sp"
+                android:textColor="#ffffff" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/textView1" android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.github.chuross.widget.ExtraTextView android:layout_width="170dp"
+                                                 android:layout_height="80dp"
+                                                 android:textColor="#F1E9DA"
+                                                 android:textSize="20dp"
+                                                 app:ext_txt_drawableHeight="70dp"
+                                                 app:ext_txt_drawableWidth="24dp"
+                                                 android:drawableTop="@drawable/ic_directions_run_black_24dp"
+                                                 android:text="Przejść x metrów"
+                                                 android:gravity="center"
+                                                 app:ext_txt_cornerBorderColor="@color/colorLogin"
+                                                 ext_txt_cornerBorderSize="5dp"
+                                                 android:background="@drawable/fit_info"
+                                                 android:layout_marginEnd="8dp"
+                                                 app:layout_constraintEnd_toEndOf="parent"
+                                                 android:layout_marginStart="8dp"
+                                                 app:layout_constraintStart_toStartOf="parent"
+                                                 android:layout_marginTop="20dp"
+                                                 app:layout_constraintTop_toBottomOf="@+id/textView2"
+                                                 app:layout_constraintHorizontal_bias="0.498"
+                                                 android:id="@+id/extraTextView2"/>
+
+        <com.github.chuross.widget.ExtraTextView android:layout_width="170dp"
+                                                 android:layout_height="80dp"
+                                                 app:ext_txt_drawableHeight="24dp"
+                                                 android:textColor="#F1E9DA"
+                                                 android:textSize="20dp"
+                                                 app:ext_txt_drawableWidth="24dp"
+                                                 android:gravity="center"
+                                                 android:drawableTop="@drawable/ic_local_activity_black_24dp"
+                                                 android:text="Zrobić x kroków"
+                                                 android:background="@drawable/fit_info"
+                                                 android:id="@+id/extraTextView" android:layout_marginTop="20dp"
+                                                 app:layout_constraintTop_toBottomOf="@+id/extraTextView2"
+                                                 android:layout_marginEnd="8dp"
+                                                 app:layout_constraintEnd_toEndOf="parent"
+                                                 android:layout_marginStart="8dp"
+                                                 app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.github.chuross.widget.ExtraTextView android:layout_width="170dp"
+                                                 android:layout_height="80dp"
+                                                 app:ext_txt_drawableHeight="24dp"
+                                                 android:textColor="#F1E9DA"
+                                                 android:textSize="20dp"
+                                                 app:ext_txt_drawableWidth="24dp"
+                                                 android:gravity="center"
+                                                 android:drawableTop="@drawable/ic_whatshot_black_24dp"
+                                                 android:text="Spalić x kalorii"
+                                                 android:background="@drawable/fit_info"
+                                                 android:layout_marginEnd="8dp"
+                                                 app:layout_constraintEnd_toEndOf="parent"
+                                                 android:layout_marginStart="8dp"
+                                                 app:layout_constraintStart_toStartOf="parent"
+                                                 android:layout_marginTop="20dp"
+                                                 app:layout_constraintTop_toBottomOf="@+id/extraTextView"/>
+
+
+    </android.support.constraint.ConstraintLayout>
 </FrameLayout>

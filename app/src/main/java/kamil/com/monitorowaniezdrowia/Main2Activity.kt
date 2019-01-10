@@ -18,6 +18,7 @@ import android.support.v4.app.FragmentTransaction
 import android.util.Log
 import kamil.com.monitorowaniezdrowia.Fragment.fit
 import kamil.com.monitorowaniezdrowia.Fragment.kuchnia
+import kamil.com.monitorowaniezdrowia.Fragment.ustawienia
 import kotlinx.android.synthetic.main.activity_main2.*
 import kotlinx.android.synthetic.main.app_bar_main2.*
 import kotlinx.android.synthetic.main.content_main2.*
@@ -26,10 +27,12 @@ import kotlinx.android.synthetic.main.content_main2.*
 
 class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
     fit.OnFragmentInteractionListener,
-    kuchnia.OnFragmentInteractionListener {
+    kuchnia.OnFragmentInteractionListener,
+    ustawienia.OnFragmentInteractionListener{
 
     lateinit var fitFragment:fit
     lateinit var kuchniaFragment:kuchnia
+    lateinit var ustawieniaFragment:ustawienia
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +50,14 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
         fitFragment  = fit.newInstance()
         kuchniaFragment = kuchnia.newInstance()
+        ustawieniaFragment = ustawienia.newInstance()
+
+        toolbar.title="Fit"
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.fragment_container, fitFragment)
+            .addToBackStack(fitFragment.toString())
+            .commit()
 
     }
 
@@ -108,9 +119,9 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                 toolbar.title="Fit"
                 supportFragmentManager
                     .beginTransaction()
+                    .setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_left)
                     .replace(R.id.fragment_container, fitFragment)
                     .addToBackStack(fitFragment.toString())
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit()
                 return@OnNavigationItemSelectedListener true
             }
@@ -118,14 +129,20 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                 toolbar.title="Kuchnia"
                 supportFragmentManager
                     .beginTransaction()
+                    .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
                     .replace(R.id.fragment_container, kuchniaFragment)
                     .addToBackStack(kuchniaFragment.toString())
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.ustawienia -> {
-                toolbar.title="dziala3"
+                toolbar.title="Ustawienia"
+                supportFragmentManager
+                    .beginTransaction()
+                    .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right)
+                    .replace(R.id.fragment_container, ustawieniaFragment)
+                    .addToBackStack(ustawieniaFragment.toString())
+                    .commit()
                 return@OnNavigationItemSelectedListener true
             }
         }
