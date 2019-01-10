@@ -2,6 +2,7 @@ package kamil.com.monitorowaniezdrowia
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.design.widget.Snackbar
@@ -13,14 +14,22 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.FrameLayout
+import android.support.v4.app.FragmentTransaction
+import android.util.Log
+import kamil.com.monitorowaniezdrowia.Fragment.fit
+import kamil.com.monitorowaniezdrowia.Fragment.kuchnia
 import kotlinx.android.synthetic.main.activity_main2.*
 import kotlinx.android.synthetic.main.app_bar_main2.*
 import kotlinx.android.synthetic.main.content_main2.*
 
 
 
+class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
+    fit.OnFragmentInteractionListener,
+    kuchnia.OnFragmentInteractionListener {
 
-class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+    lateinit var fitFragment:fit
+    lateinit var kuchniaFragment:kuchnia
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +44,9 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         toggle.syncState()
         nav_view.setNavigationItemSelectedListener(this)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+
+        fitFragment  = fit.newInstance()
+        kuchniaFragment = kuchnia.newInstance()
 
     }
 
@@ -93,11 +105,23 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.fit -> {
-                toolbar.title="dziala"
+                toolbar.title="Fit"
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, fitFragment)
+                    .addToBackStack(fitFragment.toString())
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .commit()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.kuchnia -> {
-                toolbar.title="dziala2"
+                toolbar.title="Kuchnia"
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, kuchniaFragment)
+                    .addToBackStack(kuchniaFragment.toString())
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .commit()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.ustawienia -> {
@@ -106,6 +130,10 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
             }
         }
         false
+    }
+
+    override fun onFragmentInteraction(uri: Uri) {
+        Log.d("Monitorowanie zdrowia", "OnFragmentInteraction")
     }
 
 
