@@ -52,13 +52,11 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         kuchniaFragment = kuchnia.newInstance()
         ustawieniaFragment = ustawienia.newInstance()
 
-        toolbar.title="Fit"
         supportFragmentManager
             .beginTransaction()
             .add(R.id.fragment_container, fitFragment)
             .addToBackStack(fitFragment.toString())
             .commit()
-
     }
 
     override fun onBackPressed() {
@@ -84,7 +82,6 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         // Handle navigation_main view item clicks here.
         when (item.itemId) {
             R.id.nav_camera -> {
-                // Handle the camera action
             }
             R.id.nav_gallery -> {
 
@@ -113,36 +110,48 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         return true
     }
 
+    var ekran = 1
+
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.fit -> {
                 toolbar.title="Fit"
                 supportFragmentManager
                     .beginTransaction()
-                    .setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_left)
+                    .setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right)
                     .replace(R.id.fragment_container, fitFragment)
-                    .addToBackStack(fitFragment.toString())
                     .commit()
+                ekran = 1
                 return@OnNavigationItemSelectedListener true
             }
             R.id.kuchnia -> {
                 toolbar.title="Kuchnia"
-                supportFragmentManager
-                    .beginTransaction()
-                    .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
-                    .replace(R.id.fragment_container, kuchniaFragment)
-                    .addToBackStack(kuchniaFragment.toString())
-                    .commit()
+                if (ekran == 1) {
+                    supportFragmentManager
+                        .beginTransaction()
+                        .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
+                        .replace(R.id.fragment_container, kuchniaFragment)
+                        .commit()
+                }
+                if (ekran == 3) {
+                    supportFragmentManager
+                        .beginTransaction()
+                        .setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right)
+                        .replace(R.id.fragment_container, kuchniaFragment)
+                        .commit()
+
+                }
+                 ekran = 2
                 return@OnNavigationItemSelectedListener true
             }
             R.id.ustawienia -> {
                 toolbar.title="Ustawienia"
                 supportFragmentManager
                     .beginTransaction()
-                    .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right)
+                    .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
                     .replace(R.id.fragment_container, ustawieniaFragment)
-                    .addToBackStack(ustawieniaFragment.toString())
                     .commit()
+                ekran = 3
                 return@OnNavigationItemSelectedListener true
             }
         }

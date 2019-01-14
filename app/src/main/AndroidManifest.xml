@@ -5,11 +5,17 @@
     <application
             android:allowBackup="true"
             android:fullBackupContent="true"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@drawable/fit_logo"
             android:label="@string/app_name"
-            android:roundIcon="@mipmap/ic_launcher_round"
+            android:roundIcon="@drawable/fit_logo_launcher"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <service
+                android:name=".background_step"
+                android:enabled="true"
+                android:exported="true">
+        </service>
+
         <activity
                 android:name=".Main2Activity"
                 android:label="@string/title_activity_main2"
