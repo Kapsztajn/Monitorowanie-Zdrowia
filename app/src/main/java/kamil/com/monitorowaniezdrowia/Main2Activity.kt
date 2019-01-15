@@ -22,22 +22,34 @@ import kamil.com.monitorowaniezdrowia.Fragment.ustawienia
 import kotlinx.android.synthetic.main.activity_main2.*
 import kotlinx.android.synthetic.main.app_bar_main2.*
 import kotlinx.android.synthetic.main.content_main2.*
-
+import android.widget.Toast
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
+import android.hardware.Sensor
+import kotlinx.android.synthetic.main.fragment_fit.*
 
 
 class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
     fit.OnFragmentInteractionListener,
     kuchnia.OnFragmentInteractionListener,
-    ustawienia.OnFragmentInteractionListener{
+    ustawienia.OnFragmentInteractionListener,
+    SensorEventListener{
 
     lateinit var fitFragment:fit
     lateinit var kuchniaFragment:kuchnia
     lateinit var ustawieniaFragment:ustawienia
+    var activityRunning = false
+    var mSensorManager : SensorManager?= null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
         setSupportActionBar(toolbar)
+
+        mSensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+
 
 
         val toggle = ActionBarDrawerToggle(
@@ -58,6 +70,35 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
             .addToBackStack(fitFragment.toString())
             .commit()
     }
+
+    override fun onResume() {
+        super.onResume()
+        activityRunning = true
+        var stepsSensor = mSensorManager?.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
+
+        if (stepsSensor == null) {
+            Toast.makeText(this, "No Step Counter Sensor !", Toast.LENGTH_SHORT).show()
+        } else {
+            mSensorManager?.registerListener(this, stepsSensor, SensorManager.SENSOR_DELAY_UI)
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        activityRunning = false
+        mSensorManager?.unregisterListener(this)
+    }
+
+    override fun onAccuracyChanged(p0: Sensor?, p1: Int) {
+    }
+
+    override fun onSensorChanged(event: SensorEvent) {
+        if (activityRunning) {
+            extraTextView.setText("" + event.values[0])
+        }
+    }
+
+
 
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
