@@ -27,12 +27,12 @@ class StartScreen : AppCompatActivity() {
 
             if (pref.getString("login", null)==null && pref.getString("password", null)==null){
 
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, Login_Activity::class.java)
                 startActivity(intent)
             }
             else
             {
-                val intent = Intent(this, Main2Activity::class.java)
+                val intent = Intent(this, MainScreen_Activity::class.java)
                 startActivity(intent)
 
             }

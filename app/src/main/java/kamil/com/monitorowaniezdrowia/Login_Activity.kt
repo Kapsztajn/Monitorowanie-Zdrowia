@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.user_register.*
 import android.view.animation.TranslateAnimation
 
 
-class MainActivity : AppCompatActivity() {
+class Login_Activity : AppCompatActivity() {
 
     lateinit var handler: DatabaseHelper
     var secondViewOpened = false
@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         handler = DatabaseHelper(this)
 
 
+
         button.setOnClickListener {
             if (handler.userpasswordPresent(login_loginscreen.text.toString(),password_loginscreen.text.toString()))
             {
@@ -34,8 +35,9 @@ class MainActivity : AppCompatActivity() {
                 val editor = pref.edit()
                 editor.putString("login", login_loginscreen.text.toString())
                 editor.putString("password", password_loginscreen.text.toString())
+                editor.putString("email", handler.useremail(login_loginscreen.text.toString()))
                 editor.apply()
-                val intent = Intent(this, Main2Activity::class.java)
+                val intent = Intent(this, MainScreen_Activity::class.java)
                 startActivity(intent)
                 finish()
             }

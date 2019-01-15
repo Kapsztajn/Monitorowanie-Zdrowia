@@ -9,25 +9,21 @@
                 android:icon="@drawable/ic_menu_camera"
                 android:title="Import"/>
         <item
-                android:id="@+id/nav_gallery"
-                android:icon="@drawable/ic_menu_gallery"
-                android:title="Gallery"/>
-        <item
                 android:id="@+id/nav_slideshow"
-                android:icon="@drawable/ic_menu_slideshow"
-                android:title="Slideshow"/>
+                android:icon="@drawable/ic_history_black_24dp"
+                android:title="Historia"/>
         <item
-                android:id="@+id/nav_manage"
+                android:id="@+id/nav_profil"
                 android:icon="@drawable/ic_menu_manage"
-                android:title="Tools"/>
+                android:title="Profil"/>
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Aplikacja">
         <menu>
             <item
-                    android:id="@+id/nav_share"
-                    android:icon="@drawable/ic_menu_share"
-                    android:title="Share"/>
+                    android:id="@+id/nav_info"
+                    android:icon="@drawable/ic_info_black_24dp"
+                    android:title="O aplikacji"/>
             <item
                     android:id="@+id/wyloguj"
                     android:icon="@drawable/ic_menu_send"

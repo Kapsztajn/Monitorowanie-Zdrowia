@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:showIn="@layout/user_main_login"
-        tools:context=".MainActivity"
+        tools:context=".Login_Activity"
         android:animateLayoutChanges="true"
 >
     <EditText
@@ -51,7 +51,7 @@
             android:contentDescription="@string/logo"
             android:layout_width="125dp"
             android:layout_height="125dp" app:srcCompat="@drawable/fit_logo"
-            android:id="@+id/imageView" app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/zdjecieuzytkownika" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp" android:layout_marginTop="32dp" app:layout_constraintTop_toTopOf="parent"
             android:layout_marginBottom="24dp" app:layout_constraintBottom_toTopOf="@+id/login_loginscreen"
@@ -66,7 +66,7 @@
             android:background="@drawable/login_button"
             android:id="@+id/button" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="24dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="24dp"
-            android:layout_marginTop="200dp" app:layout_constraintTop_toBottomOf="@+id/imageView"
+            android:layout_marginTop="200dp" app:layout_constraintTop_toBottomOf="@+id/zdjecieuzytkownika"
             app:layout_constraintHorizontal_bias="0.0"/>
     <TextView
             android:text="@string/zarejestrujsie"

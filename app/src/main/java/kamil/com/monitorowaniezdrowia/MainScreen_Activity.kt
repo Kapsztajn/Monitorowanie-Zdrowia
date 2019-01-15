@@ -5,16 +5,11 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
-import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
-import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
-import android.view.Menu
 import android.view.MenuItem
-import android.widget.FrameLayout
-import android.support.v4.app.FragmentTransaction
 import android.util.Log
 import kamil.com.monitorowaniezdrowia.Fragment.fit
 import kamil.com.monitorowaniezdrowia.Fragment.kuchnia
@@ -27,29 +22,40 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.hardware.Sensor
+import android.view.View
 import kotlinx.android.synthetic.main.fragment_fit.*
+import kotlinx.android.synthetic.main.nav_header_main2.view.*
 
 
-class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
+
+
+
+class MainScreen_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
     fit.OnFragmentInteractionListener,
     kuchnia.OnFragmentInteractionListener,
     ustawienia.OnFragmentInteractionListener,
     SensorEventListener{
 
+    lateinit var handler: DatabaseHelper
     lateinit var fitFragment:fit
     lateinit var kuchniaFragment:kuchnia
     lateinit var ustawieniaFragment:ustawienia
     var activityRunning = false
     var mSensorManager : SensorManager?= null
+    var ilosckrokow_dofragmentu = "0"
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
         setSupportActionBar(toolbar)
+        handler = DatabaseHelper(this)
+
+
 
         mSensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
-
+        val pref = getSharedPreferences("loginData", Context.MODE_PRIVATE)
 
 
         val toggle = ActionBarDrawerToggle(
@@ -60,7 +66,12 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         nav_view.setNavigationItemSelectedListener(this)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
-        fitFragment  = fit.newInstance()
+        val headerView: View = nav_view.getHeaderView(0)
+        headerView.nazwauzytkownika.text = ("Cześć " + pref.getString("login", ""))
+        headerView.email.text = pref.getString("email", "")
+
+
+        fitFragment  = fit.newInstance(ilosckrokow_dofragmentu)
         kuchniaFragment = kuchnia.newInstance()
         ustawieniaFragment = ustawienia.newInstance()
 
@@ -94,11 +105,15 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
     override fun onSensorChanged(event: SensorEvent) {
         if (activityRunning) {
-            extraTextView.setText("" + event.values[0])
+            kroki.setText("Zrobić " + String.format("%.0f", event.values[0])  + " kroków")
+            var metryzkrokow = String.format("%.1f", event.values[0]*0.762)
+            var kaloriezkrokow = String.format("%.1f", event.values[0]*0.05)
+            metry.setText("Przejść " + metryzkrokow + " metrów")
+            kalorie.setText("Spalić " + kaloriezkrokow + " kalorii")
+            handler.insertKroki(event.values[0].toString())
+            ilosckrokow_dofragmentu = event.values[0].toString()
         }
     }
-
-
 
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
@@ -120,20 +135,16 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        // Handle navigation_main view item clicks here.
         when (item.itemId) {
             R.id.nav_camera -> {
-            }
-            R.id.nav_gallery -> {
-
             }
             R.id.nav_slideshow -> {
 
             }
-            R.id.nav_manage -> {
+            R.id.nav_profil -> {
 
             }
-            R.id.nav_share -> {
+            R.id.nav_info -> {
 
             }
             R.id.wyloguj -> {
@@ -141,7 +152,7 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                 val editor = pref.edit()
                 editor.clear()
                 editor.apply()
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, Login_Activity::class.java)
                 startActivity(intent)
                 finish()
             }
@@ -205,3 +216,4 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
 
 }
+
