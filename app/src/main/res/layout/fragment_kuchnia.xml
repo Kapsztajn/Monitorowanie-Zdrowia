@@ -11,6 +11,25 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+        <EditText
+                android:layout_width="0dp"
+                android:layout_height="51dp"
+                android:inputType="textPersonName"
+                android:hint="Podaj liczbę zjedzonych kalorii"
+                android:autofillHints="Podaj liczbę zjedzonych kalorii"
+                android:ems="10"
+                android:background="@drawable/fit_info"
+                android:drawableStart="@drawable/ic_whatshot_black_24dp"
+                android:drawablePadding="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textColorHint="#A9A9A9"
+                android:id="@+id/podanekalorie" app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="100dp" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="24dp" android:layout_marginEnd="24dp"
+                android:textColor="#FFFFFF"
+                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.0"/>
+
         <Button
                 android:text="Oblicz kalorie"
                 android:layout_width="200dp"
@@ -21,7 +40,7 @@
                 android:textSize="21sp"
                 android:background="@drawable/login_button" android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
-                app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="384dp"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="250dp"
                 app:layout_constraintTop_toTopOf="parent" app:layout_constraintHorizontal_bias="0.497"/>
     </android.support.constraint.ConstraintLayout>
 </FrameLayout>

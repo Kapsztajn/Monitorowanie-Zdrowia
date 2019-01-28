@@ -101,9 +101,15 @@ class Login_Activity : AppCompatActivity() {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.anim.
-        return when (item.itemId) {
+        val id = item.itemId
+        if(id == R.id.action_settings) {
+            val intent = Intent(this, About::class.java)
+            startActivity(intent)
+        }
+            return when (item.itemId) {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
+
         }
     }
 

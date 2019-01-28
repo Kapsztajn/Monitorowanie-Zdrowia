@@ -7,16 +7,22 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.Toast
+import kamil.com.monitorowaniezdrowia.DatabaseHelper
 
 import kamil.com.monitorowaniezdrowia.R
+import kotlinx.android.synthetic.main.fragment_kuchnia.*
+import kotlinx.android.synthetic.main.fragment_kuchnia.view.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 class kuchnia : Fragment() {
-    // TODO: Rename and change types of parameters
+
+    private var ctx: Context? = null
+    private var self: View? = null
+    lateinit var handler: DatabaseHelper
     private var param1: String? = null
     private var param2: String? = null
     private var listener: OnFragmentInteractionListener? = null
@@ -33,8 +39,29 @@ class kuchnia : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_kuchnia, container, false)
+        handler = DatabaseHelper(this!!.getActivity()!!)
+        ctx = container?.context
+        self = LayoutInflater.from(ctx).inflate(R.layout.fragment_kuchnia, container, false)
+        val bDaButton = self?.findViewById<Button>(R.id.button3)
+        bDaButton?.setOnClickListener {
+            var wartosc = handler.readKroki()
+            var kaloriezkrokow = String.format("%.0f", wartosc.toInt()*0.05)
+            var podanekalorie = podanekalorie.text.toString()
+            var obliczonekalorie = (podanekalorie.toInt().minus(kaloriezkrokow.toInt()))
+            if (obliczonekalorie<=0)
+            {
+                Toast.makeText(ctx, "Brawo! Dzisiaj już masz fajrant", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                Toast.makeText(
+                    ctx,
+                    "Musisz jeszcze spalić: " + obliczonekalorie.toString() + " kalorii",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+        return self
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

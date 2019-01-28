@@ -143,8 +143,6 @@ class MainScreen_Activity : AppCompatActivity(), NavigationView.OnNavigationItem
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.nav_camera -> {
-            }
             R.id.nav_slideshow -> {
 
             }
@@ -152,7 +150,8 @@ class MainScreen_Activity : AppCompatActivity(), NavigationView.OnNavigationItem
 
             }
             R.id.nav_info -> {
-
+                val intent = Intent(this, About::class.java)
+                startActivity(intent)
             }
             R.id.wyloguj -> {
                 val pref = getSharedPreferences("loginData", Context.MODE_PRIVATE)
