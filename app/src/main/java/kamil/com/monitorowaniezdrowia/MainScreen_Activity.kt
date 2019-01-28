@@ -43,6 +43,7 @@ class MainScreen_Activity : AppCompatActivity(), NavigationView.OnNavigationItem
     var activityRunning = false
     var mSensorManager : SensorManager?= null
     var ilosckrokow_dofragmentu = "0"
+    var czyAppDzialala = 0
 
 
 
@@ -110,7 +111,13 @@ class MainScreen_Activity : AppCompatActivity(), NavigationView.OnNavigationItem
             var kaloriezkrokow = String.format("%.1f", event.values[0]*0.05)
             metry.setText("Przejść " + metryzkrokow + " metrów")
             kalorie.setText("Spalić " + kaloriezkrokow + " kalorii")
-            handler.insertKroki(event.values[0].toString())
+            if (czyAppDzialala==0) {
+                handler.insertkroki((String.format("%.0f", event.values[0])).toString())
+                czyAppDzialala = czyAppDzialala + 1
+            }
+            else {
+                handler.updatekroki((String.format("%.0f", event.values[0])).toString())
+            }
             ilosckrokow_dofragmentu = event.values[0].toString()
         }
     }

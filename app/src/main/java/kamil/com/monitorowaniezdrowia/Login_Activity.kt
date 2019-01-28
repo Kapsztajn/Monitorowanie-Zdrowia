@@ -12,6 +12,8 @@ import kotlinx.android.synthetic.main.user_main_login.*
 import kotlinx.android.synthetic.main.user_login.*
 import kotlinx.android.synthetic.main.user_register.*
 import android.view.animation.TranslateAnimation
+import com.wajahatkarim3.easyvalidation.core.view_ktx.nonEmpty
+import com.wajahatkarim3.easyvalidation.core.view_ktx.validEmail
 
 
 class Login_Activity : AppCompatActivity() {
@@ -58,16 +60,20 @@ class Login_Activity : AppCompatActivity() {
 
 
         button2.setOnClickListener {
-            if (handler.userPresent(login.text.toString()))
-            {
-                Toast.makeText(this,"Taki użytkownik już istnieje, zaloguj się", Toast.LENGTH_SHORT).show()
+            if (login.nonEmpty() && email.validEmail() && password.nonEmpty()) {
+                if (handler.userPresent(login.text.toString())) {
+                    Toast.makeText(this, "Taki użytkownik już istnieje, zaloguj się", Toast.LENGTH_SHORT).show()
+                } else {
+                    showLogin()
+                    handler.insertUserData(login.text.toString(), email.text.toString(), password.text.toString())
+                    login.text = null
+                    email.text = null
+                    password.text = null
+                }
             }
-            else {
-                showLogin()
-                handler.insertUserData(login.text.toString(), email.text.toString(), password.text.toString())
-                login.text = null
-                email.text = null
-                password.text = null
+            else
+            {
+                Toast.makeText(this, "Podaj poprawne dane", Toast.LENGTH_SHORT).show()
             }
         }
 

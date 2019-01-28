@@ -49,7 +49,11 @@ class fit : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         var wartosc = handler.readKroki()
-        kroki.text = wartosc
+        kroki.text = "Zrobić " + wartosc + " kroków"
+        var metryzkrokow = String.format("%.1f", wartosc.toInt()*0.762)
+        var kaloriezkrokow = String.format("%.1f", wartosc.toInt()*0.05)
+        kalorie.text = "Spalić " + kaloriezkrokow + " kalorii"
+        metry.text = "Przejść " + metryzkrokow + " metrów"
     }
 
     fun onButtonPressed(uri: Uri) {

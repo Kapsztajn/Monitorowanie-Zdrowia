@@ -4,6 +4,9 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.icu.lang.UProperty.AGE
+
+
 
 
 class DatabaseHelper(context: Context):SQLiteOpenHelper(context,dbname,factory,version ){
@@ -18,7 +21,15 @@ class DatabaseHelper(context: Context):SQLiteOpenHelper(context,dbname,factory,v
         onCreate(p0)
     }
 
-    fun insertKroki(kroki: String){
+    fun insertkroki(kroki: String){
+        val db:SQLiteDatabase=writableDatabase
+        val values = ContentValues()
+        values.put("ilosckrokow", kroki)
+        db.insert("kroki",null,values)
+        db.close()
+    }
+
+    fun updatekroki(kroki: String){
         val db:SQLiteDatabase=writableDatabase
         val values = ContentValues()
         values.put("ilosckrokow", kroki)
@@ -30,8 +41,7 @@ class DatabaseHelper(context: Context):SQLiteOpenHelper(context,dbname,factory,v
         val db = writableDatabase
         val query = "select ilosckrokow from kroki"
         val cursor = db.rawQuery(query, null)
-        var przeczytajKroki = "Pusty"
-
+        var przeczytajKroki = "0"
         if (cursor.moveToFirst()) {
             cursor.moveToFirst()
             przeczytajKroki = cursor.getString(0)
